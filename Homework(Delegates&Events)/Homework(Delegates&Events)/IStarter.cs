@@ -12,7 +12,6 @@ namespace Homework_Delegates_Events_
         {
             Console.WriteLine($" Введите число:");
             var calc = new Calc();
-            calc.Result = double.Parse(Console.ReadLine());
             var action = "";
             while (true)
             {
