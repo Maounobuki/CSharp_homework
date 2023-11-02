@@ -10,7 +10,6 @@ namespace Homework_Delegates_Events_
     {
         static void Start()
         {
-            Console.WriteLine($" Введите число:");
             var calc = new Calc();
             var action = "";
             while (true)
@@ -33,32 +32,38 @@ namespace Homework_Delegates_Events_
                         Console.WriteLine("Для получения разности суммы введите '-'");
                         Console.WriteLine("Для умножения введите '-'");
                         Console.WriteLine("Для деления введите '/'");
-                        Console.WriteLine(($"Для изменения текушего значения {calc.Result} введите '!'")); ; break;
+                        Console.WriteLine(($"Для изменения текушего значения {calc.Result} введите '!'"));
+                        Console.WriteLine("Для выхода из приложения введите 'пустое' значение либо 'quit'"); ; break;
 
                     case "!":
                         Console.WriteLine($" Введите число:");
-                        calc.Result = double.Parse(Console.ReadLine());
+                        var num = Console.ReadLine();
+                        if (string.IsNullOrEmpty(num))
+                        {
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            calc.Result = Convert.ToDouble(num);
+                        }
                         break;
                     case "+": action = "+"; break;
                     case "-": action = "-"; break;
                     case "*": action = "*"; break;
-                    case "/": action = "/"; break;                    
+                    case "/": action = "/"; break;
+                    case "" : Environment.Exit(0); break;
                     case "quit": Environment.Exit(0); break;
 
                     case "DevideByZero":
                         Console.WriteLine("На ноль делить нельзя");
                         break;
-                    default:
+                    default:                       
                         if (string.IsNullOrEmpty(action))
                         {
-                            Console.WriteLine("Необходим выбор действия!");
+                            Console.WriteLine("Необходим выбор действия!");                            
                             break;
                         }
-                        if (action.Equals("?"))
-                        {  
-                            
-                            
-                        }
+                        
                         if (int.TryParse(str, out int number))
                         {       
                             calc.Result = action.Equals("+") ? calc.Result + number :
