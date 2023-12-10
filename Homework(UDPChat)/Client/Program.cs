@@ -9,7 +9,7 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            SentMessage("dim", "127.0.0.1");//args[0], args[1]);
+            SentMessage("Maou", "127.0.0.1");//args[0], args[1]);
         }
         public static void SentMessage(string From, string ip)
         {
