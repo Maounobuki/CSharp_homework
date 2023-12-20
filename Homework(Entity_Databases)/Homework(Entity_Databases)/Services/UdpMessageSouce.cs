@@ -1,12 +1,8 @@
 ﻿using Homework_Entity_Databases_.Abstracts;
 using Homework_Entity_Databases_.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Homework_Entity_Databases_.Services
@@ -29,7 +25,7 @@ namespace Homework_Entity_Databases_.Services
         {
             byte[] buffer = Encoding.UTF8.GetBytes(message.SerialazeMessageToJSON());
 
-         await   _udpClient.SendAsync(buffer, buffer.Length, ep);
+            await   _udpClient.SendAsync(buffer, buffer.Length, ep);
         }
     }
 }

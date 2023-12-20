@@ -1,11 +1,6 @@
 ﻿using Homework_Entity_Databases_.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Homework_Entity_Databases_.Abstracts;
 
 namespace Homework_Entity_Databases_.Services
@@ -14,8 +9,8 @@ namespace Homework_Entity_Databases_.Services
     {
         private readonly string _name;
        
-        private readonly IMessageSource _messageSouce;
-        private IPEndPoint remoteEndPoint;
+        public IMessageSource _messageSouce;
+        public IPEndPoint remoteEndPoint;
         public Client(string name, string address, int port)
         {
             this._name = name;          
@@ -24,8 +19,8 @@ namespace Homework_Entity_Databases_.Services
             remoteEndPoint = new IPEndPoint(IPAddress.Parse(address), port);
         }
 
-        UdpClient udpClientClient = new UdpClient();
-        async Task ClientListener()
+        public UdpClient udpClientClient = new UdpClient();
+        public async Task ClientListener()
         {
             while (true)
             {
@@ -43,6 +38,7 @@ namespace Homework_Entity_Databases_.Services
                 {
                     Console.WriteLine("Ошибка при получении сообщения: " + ex.Message);
                 }
+                break;
             }
         }
 
@@ -53,7 +49,7 @@ namespace Homework_Entity_Databases_.Services
         }
 
 
-        void Register(IPEndPoint remoteEndPoint)
+        public void Register(IPEndPoint remoteEndPoint)
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Any, 0);
             var message = new NetMessage() { NickNameFrom = _name, NickNameTo = null, Text = null, Command = Command.Register, EndPoint = ep };
@@ -91,7 +87,7 @@ namespace Homework_Entity_Databases_.Services
 
         public async Task Start()
         {
-            //udpClientClient = new UdpClient(port);
+            
 
             await ClientListener();
 

@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Proxies;
-using Microsoft.EntityFrameworkCore.SqlServer;
 namespace Homework_Entity_Databases_.Models
 {
     public class ChatContext : DbContext
@@ -8,19 +6,13 @@ namespace Homework_Entity_Databases_.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Message> Messages { get; set; }
 
-        public ChatContext()
-        {
+        public ChatContext() {}
 
-        }
-
-        public ChatContext(DbContextOptions<ChatContext> dbc) : base(dbc)
-        {
-
-        }
+        public ChatContext(DbContextOptions<ChatContext> dbc) : base(dbc) {}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLExpress; Database=GB_DZ;Integrated Security=False;TrustServerCertificate=True; Trusted_Connection=True;")    
+            optionsBuilder.UseSqlServer(@"Server=.\SQLExpress; Database=HW_EF;Integrated Security=False;TrustServerCertificate=True; Trusted_Connection=True;")
                 .UseLazyLoadingProxies();
         }
 
